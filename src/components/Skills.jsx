@@ -1,0 +1,96 @@
+import React from 'react';
+import { Box, Card, Typography, Chip } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { motion } from 'framer-motion';
+import CodeIcon from '@mui/icons-material/Code';
+import TerminalIcon from '@mui/icons-material/Terminal';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+import DesktopWindowsIcon from '@mui/icons-material/DesktopWindows';
+import StorageIcon from '@mui/icons-material/Storage';
+import BuildIcon from '@mui/icons-material/Build';
+import SectionWrapper from './SectionWrapper';
+import { skills } from '../data/portfolioData';
+
+const iconMap = {
+  Code: <CodeIcon />,
+  Terminal: <TerminalIcon />,
+  Analytics: <AnalyticsIcon />,
+  DesktopWindows: <DesktopWindowsIcon />,
+  Storage: <StorageIcon />,
+  Build: <BuildIcon />
+};
+
+const glassStyle = (theme) => ({
+  background: theme.palette.mode === 'dark'
+    ? 'rgba(255, 255, 255, 0.05)'
+    : 'rgba(255, 255, 255, 0.7)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: '16px',
+  border: theme.palette.mode === 'dark'
+    ? '1px solid rgba(59, 130, 246, 0.1)'
+    : '1px solid rgba(30, 64, 175, 0.1)',
+  p: 3,
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column'
+});
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const Skills = () => {
+  return (
+    <SectionWrapper id="skills" title="Kỹ năng" subtitle="Công nghệ và công cụ tôi sử dụng">
+      <Box component={motion.div} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <Grid container spacing={3}>
+          {skills?.map((skillGroup, index) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+              <motion.div variants={itemVariants} whileHover={{ y: -5 }} style={{ height: '100%' }}>
+                <Card sx={(theme) => glassStyle(theme)}>
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <Box sx={{ color: 'primary.main', mr: 1, display: 'flex' }}>
+                      {iconMap[skillGroup.icon] || <CodeIcon />}
+                    </Box>
+                    <Typography variant="h6">{skillGroup.category}</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 'auto' }}>
+                    {skillGroup.items.map((skill, idx) => (
+                      <motion.div key={idx} whileHover={{ y: -2, boxShadow: '0 0 15px rgba(59,130,246,0.4)' }}>
+                        <Chip 
+                          label={skill} 
+                          variant="outlined" 
+                          color="primary"
+                          sx={(theme) => ({ 
+                            color: 'text.primary', 
+                            borderColor: theme.palette.mode === 'dark'
+                              ? 'rgba(255,255,255,0.3)'
+                              : 'rgba(30,64,175,0.3)',
+                            '&:hover': { borderColor: 'primary.main', backgroundColor: 'rgba(59,130,246,0.1)' }
+                          })} 
+                        />
+                      </motion.div>
+                    ))}
+                  </Box>
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </SectionWrapper>
+  );
+};
+
+export default Skills;
