@@ -59,21 +59,6 @@ export const projects = [
       'So sánh kết quả giữa các phương pháp tiền xử lý, đồng thời trực quan hóa và đánh giá chất lượng cụm để phân tích tác động đến hiệu quả mô hình.'
     ],
     techStack: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Jupyter Notebook', 'Matplotlib']
-  },
-  {
-    title: 'ZZZ Bot',
-    subtitle: 'Thao tác tự động trên trình duyệt bằng thư viện Playwright',
-    period: '10/2024 - 4/2026',
-    members: 1,
-    repos: [
-      { label: 'ZZZ_Bot_Python', url: 'https://github.com/Fly-onlyone/ZZZ_Bot_Python' }
-    ],
-    description: [
-      'Thiết kế và phát triển ứng dụng desktop tự động hóa hoàn chỉnh với FastAPI, Playwright/OpenCV, React và Tauri.',
-      'Xây dựng các chức năng lập lịch tác vụ, API giao tiếp, lưu trạng thái, ghi nhật ký, sao lưu/khôi phục dữ liệu và gửi thông báo.',
-      'Thiết lập quy trình CI/CD bằng GitHub Actions với pytest, Ruff và ESLint/Prettier; đóng gói và phát hành ứng dụng Windows bằng PyInstaller và Tauri/NSIS.'
-    ],
-    techStack: ['FastAPI', 'Playwright', 'OpenCV', 'React', 'Tauri', 'GitHub Actions', 'PyInstaller']
   }
 ];
 
