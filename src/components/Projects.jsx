@@ -8,16 +8,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CircleIcon from '@mui/icons-material/Circle';
 import SectionWrapper from './SectionWrapper';
 import { projects } from '../data/portfolioData';
+import { glassStyle } from '../styles';
 
-const glassStyle = (theme) => ({
-  background: theme.palette.mode === 'dark'
-    ? 'rgba(255, 255, 255, 0.05)'
-    : 'rgba(255, 255, 255, 0.7)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: '16px',
-  border: theme.palette.mode === 'dark'
-    ? '1px solid rgba(59, 130, 246, 0.08)'
-    : '1px solid rgba(30, 64, 175, 0.08)',
+const projectCardStyle = (theme) => ({
+  ...glassStyle(theme),
   borderLeft: '3px solid',
   borderImage: 'linear-gradient(to bottom, #2563eb, #06b6d4) 1 100%',
   p: 4,
@@ -40,7 +34,7 @@ const Projects = () => {
               whileHover={{ y: -8, boxShadow: '0 8px 30px rgba(59,130,246,0.3)' }}
               style={{ height: '100%' }}
             >
-              <Card sx={(theme) => glassStyle(theme)}>
+              <Card sx={(theme) => projectCardStyle(theme)}>
                 <Box display="flex" flexWrap="wrap" justifyContent="space-between" alignItems="center" mb={1}>
                   <Typography variant="h5" color="primary.main" fontWeight="bold">
                     {project.title}

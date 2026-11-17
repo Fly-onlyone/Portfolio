@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Card, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 import { motion } from 'framer-motion';
@@ -9,19 +9,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import LanguageIcon from '@mui/icons-material/Language';
 import SectionWrapper from './SectionWrapper';
 import { personalInfo, education } from '../data/portfolioData';
-
-const glassStyle = (theme) => ({
-  background: theme.palette.mode === 'dark'
-    ? 'rgba(255, 255, 255, 0.05)'
-    : 'rgba(255, 255, 255, 0.7)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: '16px',
-  border: theme.palette.mode === 'dark'
-    ? '1px solid rgba(59, 130, 246, 0.1)'
-    : '1px solid rgba(30, 64, 175, 0.1)',
-  p: 2,
-  mb: 2
-});
+import { glassStyle } from '../styles';
 
 const infoItems = [
   { icon: <CalendarMonthIcon color="primary" />, label: 'Ngày sinh', getValue: () => personalInfo?.dob || '' },
@@ -44,7 +32,7 @@ const About = () => {
             <Typography variant="h5" color="primary" gutterBottom>
               Thông tin cá nhân
             </Typography>
-            <Card sx={(theme) => glassStyle(theme)}>
+            <Card sx={(theme) => ({ ...glassStyle(theme), p: 2, mb: 2 })}>
               <List>
                 {infoItems.map((item, index) => (
                   <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 * (index + 1) }}>
@@ -76,7 +64,7 @@ const About = () => {
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: '12px', px: 2 }}>
-                  <Card sx={(theme) => ({ ...glassStyle(theme), mb: 0 })}>
+                  <Card sx={(theme) => ({ ...glassStyle(theme), p: 2 })}>
                     <Typography variant="h6" component="span" color="primary.light">
                       {education?.school}
                     </Typography>

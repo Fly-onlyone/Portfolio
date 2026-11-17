@@ -10,6 +10,7 @@ import StorageIcon from '@mui/icons-material/Storage';
 import BuildIcon from '@mui/icons-material/Build';
 import SectionWrapper from './SectionWrapper';
 import { skills } from '../data/portfolioData';
+import { glassStyle } from '../styles';
 
 const iconMap = {
   Code: <CodeIcon />,
@@ -19,21 +20,6 @@ const iconMap = {
   Storage: <StorageIcon />,
   Build: <BuildIcon />
 };
-
-const glassStyle = (theme) => ({
-  background: theme.palette.mode === 'dark'
-    ? 'rgba(255, 255, 255, 0.05)'
-    : 'rgba(255, 255, 255, 0.7)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: '16px',
-  border: theme.palette.mode === 'dark'
-    ? '1px solid rgba(59, 130, 246, 0.1)'
-    : '1px solid rgba(30, 64, 175, 0.1)',
-  p: 3,
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column'
-});
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,7 +44,7 @@ const Skills = () => {
           {skills?.map((skillGroup, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <motion.div variants={itemVariants} whileHover={{ y: -5 }} style={{ height: '100%' }}>
-                <Card sx={(theme) => glassStyle(theme)}>
+                <Card sx={(theme) => ({ ...glassStyle(theme), p: 3, height: '100%', display: 'flex', flexDirection: 'column' })}>
                   <Box display="flex" alignItems="center" mb={2}>
                     <Box sx={{ color: 'primary.main', mr: 1, display: 'flex' }}>
                       {iconMap[skillGroup.icon] || <CodeIcon />}
