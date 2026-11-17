@@ -8,19 +8,22 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SchoolIcon from '@mui/icons-material/School';
 import LanguageIcon from '@mui/icons-material/Language';
 import SectionWrapper from './SectionWrapper';
-import { personalInfo, education } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 import { glassStyle } from '../styles';
 
-const infoItems = [
-  { icon: <CalendarMonthIcon color="primary" />, label: 'Ngày sinh', getValue: () => personalInfo?.dob || '' },
-  { icon: <LocationOnIcon color="primary" />, label: 'Địa điểm', getValue: () => personalInfo?.location || '' },
-  { icon: <SchoolIcon color="primary" />, label: 'GPA', getValue: () => education?.gpa || '' },
-  { icon: <LanguageIcon color="primary" />, label: 'Chứng chỉ', getValue: () => education?.cert || '' },
-];
-
 const About = () => {
+  const { personalInfo, education, ui } = usePortfolioData();
+  const t = ui.about;
+
+  const infoItems = [
+    { icon: <CalendarMonthIcon color="primary" />, label: t.dob, value: personalInfo?.dob || '' },
+    { icon: <LocationOnIcon color="primary" />, label: t.location, value: personalInfo?.location || '' },
+    { icon: <SchoolIcon color="primary" />, label: t.gpa, value: education?.gpa || '' },
+    { icon: <LanguageIcon color="primary" />, label: t.cert, value: education?.cert || '' },
+  ];
+
   return (
-    <SectionWrapper id="about" title="Giới thiệu" subtitle="Học vấn & thông tin cá nhân">
+    <SectionWrapper id="about" title={t.title} subtitle={t.subtitle}>
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, md: 6 }}>
           <motion.div
@@ -30,7 +33,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <Typography variant="h5" color="primary" gutterBottom>
-              Thông tin cá nhân
+              {t.personalInfo}
             </Typography>
             <Card sx={(theme) => ({ ...glassStyle(theme), p: 2, mb: 2 })}>
               <List>
@@ -38,7 +41,7 @@ const About = () => {
                   <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 * (index + 1) }}>
                     <ListItem>
                       <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.label} secondary={item.getValue()} slotProps={{ secondary: { sx: { color: 'text.secondary' } } }} />
+                      <ListItemText primary={item.label} secondary={item.value} slotProps={{ secondary: { sx: { color: 'text.secondary' } } }} />
                     </ListItem>
                   </motion.div>
                 ))}
@@ -55,7 +58,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <Typography variant="h5" color="primary" gutterBottom sx={{ ml: 2 }}>
-              Học vấn
+              {t.education}
             </Typography>
             <Timeline position="right" sx={{ p: 0, m: 0 }}>
               <TimelineItem sx={{ '&::before': { display: 'none' } }}>
@@ -71,8 +74,8 @@ const About = () => {
                     <Typography>{education?.degree}</Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>{education?.period}</Typography>
                     <Typography variant="body2" sx={{ color: 'secondary.main' }}>GPA: {education?.gpa}</Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>Xếp loại: {education?.honors}</Typography>
-                    <Typography variant="body2" sx={{ color: 'secondary.main' }}>Chứng chỉ: {education?.cert}</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>{t.honors}: {education?.honors}</Typography>
+                    <Typography variant="body2" sx={{ color: 'secondary.main' }}>{t.cert}: {education?.cert}</Typography>
                   </Card>
                 </TimelineContent>
               </TimelineItem>

@@ -21,21 +21,26 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import CheckIcon from '@mui/icons-material/Check';
+import TranslateIcon from '@mui/icons-material/Translate';
 import { motion } from 'framer-motion';
-import { navLinks } from '../data/portfolioData';
 import { useThemeMode } from '../ThemeModeContext';
-
-const themeOptions = [
-  { value: 'light', label: 'Sáng', icon: <LightModeIcon fontSize="small" /> },
-  { value: 'dark', label: 'Tối', icon: <DarkModeIcon fontSize="small" /> },
-  { value: 'system', label: 'Hệ thống', icon: <SettingsBrightnessIcon fontSize="small" /> },
-];
+import { useLanguage } from '../i18n/languageContext';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [themeAnchor, setThemeAnchor] = useState(null);
   const { mode, setMode, resolvedMode } = useThemeMode();
+  const { toggleLang } = useLanguage();
+  const { navLinks, ui } = usePortfolioData();
+  const t = ui.navbar;
+
+  const themeOptions = [
+    { value: 'light', label: t.light, icon: <LightModeIcon fontSize="small" /> },
+    { value: 'dark', label: t.dark, icon: <DarkModeIcon fontSize="small" /> },
+    { value: 'system', label: t.system, icon: <SettingsBrightnessIcon fontSize="small" /> },
+  ];
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -82,7 +87,7 @@ const Navbar = () => {
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
-  }, []);
+  }, [navLinks]);
 
   const currentIcon = mode === 'light'
     ? <LightModeIcon />
@@ -145,8 +150,20 @@ const Navbar = () => {
               ))}
             </Box>
 
+            {/* Language Toggle */}
+            <Tooltip title={t.switchLanguage}>
+              <Button
+                onClick={toggleLang}
+                startIcon={<TranslateIcon fontSize="small" />}
+                aria-label={t.switchLanguage}
+                sx={{ color: 'text.primary', minWidth: 0, px: 1, fontWeight: 600 }}
+              >
+                {t.otherLanguage}
+              </Button>
+            </Tooltip>
+
             {/* Theme Toggle */}
-            <Tooltip title="Chế độ hiển thị">
+            <Tooltip title={t.theme}>
               <IconButton
                 onClick={(e) => setThemeAnchor(e.currentTarget)}
                 sx={{

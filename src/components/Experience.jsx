@@ -5,12 +5,14 @@ import { motion } from 'framer-motion';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CircleIcon from '@mui/icons-material/Circle';
 import SectionWrapper from './SectionWrapper';
-import { experience } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 import { glassStyle } from '../styles';
 
 const Experience = () => {
+  const { experience, ui } = usePortfolioData();
+
   return (
-    <SectionWrapper id="experience" title="Kinh nghiệm" subtitle="Quá trình thực tập và làm việc">
+    <SectionWrapper id="experience" title={ui.experience.title} subtitle={ui.experience.subtitle}>
       <Box sx={{ maxWidth: 900, mx: 'auto' }}>
         <Timeline position="right" sx={{ p: 0, m: 0 }}>
           {experience?.map((job, index) => (

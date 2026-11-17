@@ -3,9 +3,10 @@ import { Box, Typography, IconButton, Fab } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { motion, AnimatePresence } from 'framer-motion';
-import { personalInfo } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 
 const Footer = () => {
+  const { personalInfo } = usePortfolioData();
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {

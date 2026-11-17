@@ -5,7 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import EmailIcon from '@mui/icons-material/Email';
 import { motion } from 'framer-motion';
-import { personalInfo, objective } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 import heroImage from '../assets/hero.jpg';
 
 const containerVariants = {
@@ -27,12 +27,14 @@ const itemVariants = {
   },
 };
 
-// On phones the CV buttons take a full row each and GitHub / Liên hệ share
+// On phones the CV buttons take a full row each and GitHub / Contact share
 // the last row; from `sm` up every button keeps its natural width.
 const cvButtonFlex = { xs: '1 1 100%', sm: '0 0 auto' };
 const secondaryButtonFlex = { xs: '1 1 0', sm: '0 0 auto' };
 
 const Hero = () => {
+  const { personalInfo, objective, ui } = usePortfolioData();
+
   const scrollToContact = () => {
     const el = document.querySelector('#contact');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -60,7 +62,7 @@ const Hero = () => {
             >
               <motion.div variants={itemVariants}>
                 <Typography variant="h6" color="secondary" sx={{ mb: 1, fontWeight: 500 }}>
-                  Xin chào, tôi là
+                  {ui.hero.greeting}
                 </Typography>
               </motion.div>
 
@@ -144,7 +146,7 @@ const Hero = () => {
                     startIcon={<EmailIcon />}
                     sx={{ flex: secondaryButtonFlex, borderRadius: '8px', px: 2.5 }}
                   >
-                    Liên hệ
+                    {ui.hero.contact}
                   </Button>
                 </Box>
               </motion.div>

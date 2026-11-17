@@ -9,7 +9,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import StorageIcon from '@mui/icons-material/Storage';
 import BuildIcon from '@mui/icons-material/Build';
 import SectionWrapper from './SectionWrapper';
-import { skills } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 import { glassStyle } from '../styles';
 
 const iconMap = {
@@ -37,8 +37,10 @@ const itemVariants = {
 };
 
 const Skills = () => {
+  const { skills, ui } = usePortfolioData();
+
   return (
-    <SectionWrapper id="skills" title="Kỹ năng" subtitle="Công nghệ và công cụ tôi sử dụng">
+    <SectionWrapper id="skills" title={ui.skills.title} subtitle={ui.skills.subtitle}>
       <Box component={motion.div} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <Grid container spacing={3}>
           {skills?.map((skillGroup, index) => (

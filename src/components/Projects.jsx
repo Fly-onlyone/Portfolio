@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CircleIcon from '@mui/icons-material/Circle';
 import InsightsIcon from '@mui/icons-material/Insights';
 import SectionWrapper from './SectionWrapper';
-import { projects } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 import { glassStyle } from '../styles';
 
 // Accent bar is a pseudo-element (not border-image) so the card keeps its
@@ -48,8 +48,10 @@ const highlightStyle = (theme) => ({
 });
 
 const Projects = () => {
+  const { projects, ui } = usePortfolioData();
+
   return (
-    <SectionWrapper id="projects" title="Dự án" subtitle="Những dự án tôi đã thực hiện">
+    <SectionWrapper id="projects" title={ui.projects.title} subtitle={ui.projects.subtitle}>
       <Grid container spacing={4}>
         {projects?.map((project, index) => (
           <Grid size={{ xs: 12 }} key={index}>
@@ -67,7 +69,7 @@ const Projects = () => {
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                     <Chip icon={<CalendarMonthIcon fontSize="small" />} label={project.period} size="small" sx={(theme) => ({ color: 'text.primary', bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(30,64,175,0.06)' })} />
-                    <Chip icon={<GroupIcon fontSize="small" />} label={`${project.members} thành viên`} size="small" sx={(theme) => ({ color: 'text.primary', bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(30,64,175,0.06)' })} />
+                    <Chip icon={<GroupIcon fontSize="small" />} label={`${project.members} ${ui.projects.members}`} size="small" sx={(theme) => ({ color: 'text.primary', bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(30,64,175,0.06)' })} />
                   </Box>
                 </Box>
                 <Typography variant="subtitle1" sx={{ color: 'secondary.main', mb: 2 }}>

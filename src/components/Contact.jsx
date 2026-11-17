@@ -9,12 +9,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import SectionWrapper from './SectionWrapper';
-import { personalInfo } from '../data/portfolioData';
+import { usePortfolioData } from '../i18n/usePortfolioData';
 
-const contactItems = [
+const getContactItems = (personalInfo, t) => [
   {
     icon: <EmailIcon />,
-    label: 'Email',
+    label: t.email,
     value: personalInfo?.email || '',
     link: `mailto:${personalInfo?.email}`,
     copyable: true,
@@ -22,15 +22,16 @@ const contactItems = [
   },
   {
     icon: <PhoneIcon />,
-    label: 'Điện thoại',
+    label: t.phone,
     value: personalInfo?.phone || '',
-    link: `tel:${personalInfo?.phone}`,
+    // Strip spaces from the display format ("+84 822 066 908") for the tel: URI.
+    link: `tel:${(personalInfo?.phone || '').replace(/[^\d+]/g, '')}`,
     copyable: true,
     color: '#06B6D4',
   },
   {
     icon: <GitHubIcon />,
-    label: 'GitHub',
+    label: t.github,
     value: 'Fly-onlyone',
     link: personalInfo?.github || '',
     external: true,
@@ -38,7 +39,7 @@ const contactItems = [
   },
   {
     icon: <LocationOnIcon />,
-    label: 'Địa điểm',
+    label: t.location,
     value: personalInfo?.location || '',
     color: '#22D3EE',
   },
@@ -58,12 +59,16 @@ const itemVariants = {
 };
 
 const Contact = () => {
+  const { personalInfo, ui } = usePortfolioData();
+  const t = ui.contact;
+  const contactItems = getContactItems(personalInfo, t);
+
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
   };
 
   return (
-    <SectionWrapper id="contact" title="Liên hệ" subtitle="Hãy kết nối với tôi">
+    <SectionWrapper id="contact" title={t.title} subtitle={t.subtitle}>
       <Box sx={{ maxWidth: 720, mx: 'auto' }}>
         <Grid
           container
@@ -123,7 +128,7 @@ const Contact = () => {
 
                     <Box sx={{ display: 'flex', gap: 0.5 }}>
                       {item.copyable && (
-                        <Tooltip title="Sao chép" arrow>
+                        <Tooltip title={t.copy} arrow>
                           <IconButton
                             size="small"
                             onClick={(e) => { e.stopPropagation(); handleCopy(item.value); }}
@@ -137,7 +142,7 @@ const Contact = () => {
                         </Tooltip>
                       )}
                       {item.external && (
-                        <Tooltip title="Mở liên kết" arrow>
+                        <Tooltip title={t.openLink} arrow>
                           <IconButton
                             size="small"
                             component="a"
