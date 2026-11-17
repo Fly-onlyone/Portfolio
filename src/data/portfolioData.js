@@ -25,7 +25,7 @@ export const personalInfo = {
 };
 
 export const objective = l10n(
-  'Fresher Data Analyst / Data Scientist. Cử nhân Khoa học Dữ liệu (HUFLIT, loại Giỏi, GPA 3.26/4.0), IELTS 6.0. Có kinh nghiệm thực tập xử lý dữ liệu bán hàng và tồn kho bằng Python tại hệ thống đại lý Honda HEAD Khánh An; làm các dự án máy học với scikit-learn và Big Data với Hadoop/Hive. Quan tâm đến việc đánh giá mô hình đúng cách và biến dữ liệu thành báo cáo giúp ra quyết định.',
+  'Fresher Data Analyst / Data Scientist. Cử nhân Công nghệ Thông tin, chuyên ngành Khoa học Dữ liệu (HUFLIT, loại Giỏi, GPA 3.26/4.0), IELTS 6.0. Có kinh nghiệm thực tập xử lý dữ liệu bán hàng và tồn kho bằng Python tại hệ thống đại lý Honda HEAD Khánh An; làm các dự án máy học với scikit-learn và Big Data với Hadoop/Hive. Quan tâm đến việc đánh giá mô hình đúng cách và biến dữ liệu thành báo cáo giúp ra quyết định.',
   'Fresher Data Analyst / Data Scientist. B.Sc. in Information Technology (Data Science major) from HUFLIT, Very Good classification (GPA 3.26/4.0), IELTS 6.0. Data Analyst intern at the Khanh An Honda HEAD dealership network, processing sales and inventory data with Python; built machine learning projects with scikit-learn and Big Data projects with Hadoop/Hive. Interested in evaluating models properly and turning data into reports that support decision-making.'
 );
 
@@ -110,7 +110,7 @@ export const projects = [
   {
     title: l10n(
       'Hệ thống dự đoán mức nguy cơ ung thư phổi trên Hadoop/Hive',
-      'Lung Cancer Risk Prediction System on Hadoop/Hive'
+      'Cancer Risk Prediction System on Hadoop/Hive'
     ),
     subtitle: l10n('Đồ án môn Big Data', 'Big Data course project'),
     period: '12/2024 - 04/2025',
@@ -119,8 +119,8 @@ export const projects = [
       { label: 'BigData', url: 'https://github.com/Fly-onlyone/BigData' }
     ],
     highlight: l10n(
-      'Accuracy 0,75 trên hồ sơ chưa thấy (grouped CV), thay vì 100% ảo',
-      'Accuracy 0.75 on unseen profiles (grouped CV) instead of a misleading 100%'
+      'Accuracy 0,75 trên hồ sơ chưa thấy (grouped CV)',
+      'Accuracy 0.75 on unseen profiles (grouped CV)'
     ),
     description: l10n(
       [
