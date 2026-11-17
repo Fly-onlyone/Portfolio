@@ -1,60 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import EmailIcon from '@mui/icons-material/Email';
 import { motion } from 'framer-motion';
 import { personalInfo, objective } from '../data/portfolioData';
 import heroImage from '../assets/hero.jpg';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
+};
+
+// On phones the CV buttons take a full row each and GitHub / Liên hệ share
+// the last row; from `sm` up every button keeps its natural width.
+const cvButtonFlex = { xs: '1 1 100%', sm: '0 0 auto' };
+const secondaryButtonFlex = { xs: '1 1 0', sm: '0 0 auto' };
+
 const Hero = () => {
-  const roles = ['AI Engineer', 'Python Developer', 'Data Enthusiast'];
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    let timer;
-    const role = roles[currentRoleIndex];
-
-    if (isDeleting) {
-      timer = setTimeout(() => {
-        setCurrentText(role.substring(0, currentText.length - 1));
-      }, 50);
-    } else {
-      timer = setTimeout(() => {
-        setCurrentText(role.substring(0, currentText.length + 1));
-      }, 100);
-    }
-
-    if (!isDeleting && currentText === role) {
-      timer = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && currentText === '') {
-      setIsDeleting(false);
-      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-    }
-
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentRoleIndex, roles]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
-
   const scrollToContact = () => {
     const el = document.querySelector('#contact');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -68,10 +46,11 @@ const Hero = () => {
         display: 'flex',
         alignItems: 'center',
         pt: { xs: 10, md: 0 },
+        pb: { xs: 6, md: 0 },
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={4} alignItems="center" direction={{ xs: 'column-reverse', md: 'row' }}>
+        <Grid container spacing={{ xs: 3, md: 4 }} alignItems="center" direction={{ xs: 'column-reverse', md: 'row' }}>
           {/* LEFT Column */}
           <Grid size={{ xs: 12, md: 7 }}>
             <motion.div
@@ -102,33 +81,16 @@ const Hero = () => {
               <motion.div variants={itemVariants}>
                 <Typography
                   variant="h4"
-                  component="h2"
+                  component="p"
                   sx={{
                     mb: 3,
                     fontWeight: 600,
-                    color: 'text.secondary',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
+                    fontSize: { xs: '1.25rem', md: '1.75rem' },
+                    lineHeight: 1.4,
+                    color: 'secondary.main',
                   }}
                 >
-                  Tôi là một{' '}
-                  <Box
-                    component="span"
-                    sx={{
-                      ml: 1,
-                      color: '#06B6D4',
-                      borderRight: '2px solid #06B6D4',
-                      paddingRight: '4px',
-                      animation: 'blink 1s step-end infinite',
-                      '@keyframes blink': {
-                        '0%, 100%': { borderColor: 'transparent' },
-                        '50%': { borderColor: '#06B6D4' },
-                      },
-                    }}
-                  >
-                    {currentText}
-                  </Box>
+                  Fresher Data Analyst · Data Scientist
                 </Typography>
               </motion.div>
 
@@ -136,37 +98,52 @@ const Hero = () => {
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ mb: 4, maxWidth: '500px', lineHeight: 1.8 }}
+                  sx={{ mb: 4, maxWidth: '560px', lineHeight: 1.8 }}
                 >
-                  {objective || 'Tôi là một kỹ sư phần mềm với niềm đam mê xây dựng các ứng dụng web và AI sáng tạo.'}
+                  {objective}
                 </Typography>
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    onClick={scrollToContact}
-                    sx={{
-                      borderRadius: '8px',
-                      px: 4,
-                      background: 'linear-gradient(45deg, #2563EB 30%, #06B6D4 90%)',
-                    }}
-                  >
-                    Liên hệ
-                  </Button>
+                <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
+                  {personalInfo?.cv?.map((cv) => (
+                    <Button
+                      key={cv.file}
+                      variant="contained"
+                      color="primary"
+                      href={import.meta.env.BASE_URL + cv.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      startIcon={<PictureAsPdfIcon />}
+                      sx={{
+                        flex: cvButtonFlex,
+                        borderRadius: '8px',
+                        px: 2.5,
+                        background: 'linear-gradient(45deg, #2563EB 30%, #06B6D4 90%)',
+                      }}
+                    >
+                      {cv.label}
+                    </Button>
+                  ))}
                   <Button
                     variant="outlined"
                     color="secondary"
-                    size="large"
                     href={personalInfo?.github || 'https://github.com'}
                     target="_blank"
+                    rel="noopener noreferrer"
                     startIcon={<GitHubIcon />}
-                    sx={{ borderRadius: '8px', px: 4 }}
+                    sx={{ flex: secondaryButtonFlex, borderRadius: '8px', px: 2.5 }}
                   >
                     GitHub
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={scrollToContact}
+                    startIcon={<EmailIcon />}
+                    sx={{ flex: secondaryButtonFlex, borderRadius: '8px', px: 2.5 }}
+                  >
+                    Liên hệ
                   </Button>
                 </Box>
               </motion.div>
@@ -175,29 +152,20 @@ const Hero = () => {
 
           {/* RIGHT Column */}
           <Grid size={{ xs: 12, md: 5 }} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut',
+            <Box
+              component="img"
+              src={heroImage}
+              alt="Nguyễn Gia Huy"
+              sx={{
+                width: { xs: '180px', sm: '240px', md: '100%' },
+                maxWidth: { md: '400px' },
+                aspectRatio: '3 / 4',
+                borderRadius: { xs: '20px', md: '24px' },
+                objectFit: 'cover',
+                objectPosition: 'center 30%',
+                filter: 'drop-shadow(0px 10px 20px rgba(59, 130, 246, 0.2))',
               }}
-            >
-              <Box
-                component="img"
-                src={heroImage}
-                alt="Nguyễn Gia Huy"
-                sx={{
-                  width: '100%',
-                  maxWidth: { xs: '300px', md: '400px' },
-                  aspectRatio: '3 / 4',
-                  borderRadius: '24px',
-                  objectFit: 'cover',
-                  objectPosition: 'center 30%',
-                  filter: 'drop-shadow(0px 10px 20px rgba(59, 130, 246, 0.2))',
-                }}
-              />
-            </motion.div>
+            />
           </Grid>
         </Grid>
       </Container>

@@ -77,22 +77,6 @@ a {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* ============ Typing Cursor ============ */
-.typing-cursor {
-  display: inline-block;
-  width: 3px;
-  height: 1em;
-  background: #3B82F6;
-  margin-left: 4px;
-  animation: blink 1s step-end infinite;
-  vertical-align: text-bottom;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 /* ============ Glow Effect ============ */
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
