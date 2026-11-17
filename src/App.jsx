@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { MotionConfig, useReducedMotion } from 'framer-motion';
 import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,20 +11,24 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-      <ParticleBackground />
-      <Navbar />
-      <Box component="main">
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Contact />
+    <MotionConfig reducedMotion="user">
+      <Box sx={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+        {!prefersReducedMotion && <ParticleBackground />}
+        <Navbar />
+        <Box component="main">
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Contact />
+        </Box>
+        <Footer />
       </Box>
-      <Footer />
-    </Box>
+    </MotionConfig>
   );
 }
 
