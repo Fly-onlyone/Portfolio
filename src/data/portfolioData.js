@@ -1,14 +1,19 @@
 export const personalInfo = {
   name: 'Nguyễn Gia Huy',
-  title: 'AI Engineer',
+  title: 'Data Analyst / Data Scientist',
   email: 'flytheonlyone111@gmail.com',
-  phone: '0812994808',
+  phone: '0822066908',
   github: 'https://github.com/Fly-onlyone',
   location: 'Thành Phố Hồ Chí Minh',
-  dob: '01/07/2003'
+  dob: '01/07/2003',
+  // `file` is relative to public/; prefix with import.meta.env.BASE_URL when linking.
+  cv: [
+    { label: 'CV Data Analyst', file: 'cv/Nguyen-Gia-Huy-Data-Analyst.pdf' },
+    { label: 'CV Data Scientist', file: 'cv/Nguyen-Gia-Huy-Data-Scientist.pdf' }
+  ]
 };
 
-export const objective = 'Fresher Python Engineer tập trung vào Data, Automation và AI. Có kinh nghiệm thực tập xây dựng báo cáo dữ liệu và tự động hóa xử lý Excel bằng Python, pandas và openpyxl; đồng thời phát triển các dự án với FastAPI, React, Playwright, Tauri, scikit-learn và Apache Hive. Quan tâm đến việc xây dựng các công cụ và sản phẩm giải quyết bài toán thực tế.';
+export const objective = 'Fresher Data Analyst / Data Scientist. Cử nhân Khoa học Dữ liệu (HUFLIT, loại Giỏi, GPA 3.26/4.0), IELTS 6.0. Có kinh nghiệm thực tập xử lý dữ liệu bán hàng và tồn kho bằng Python tại hệ thống đại lý Honda HEAD Khánh An; làm các dự án máy học với scikit-learn và Big Data với Hadoop/Hive. Quan tâm đến việc đánh giá mô hình đúng cách và biến dữ liệu thành báo cáo giúp ra quyết định.';
 
 export const education = {
   school: 'Đại học Ngoại ngữ – Tin học TP.HCM',
@@ -19,46 +24,61 @@ export const education = {
   cert: 'IELTS 6.0'
 };
 
+export const experience = [
+  {
+    company: 'Công ty TNHH Thương mại và Dịch vụ Khánh An (hệ thống đại lý Honda HEAD)',
+    role: 'Thực tập sinh Phân tích Dữ liệu (Data Analyst Intern)',
+    period: '09/2025 - 12/2025',
+    description: [
+      'Viết script Python (pandas, openpyxl) tự động tổng hợp file Excel bán hàng và tồn kho của 5 chi nhánh (~35.000 mã phụ tùng), thay cho tổng hợp thủ công.',
+      'Script tính mức tiêu thụ trung bình tháng (AMC), xếp hạng sản phẩm theo doanh số và gắn cảnh báo tồn kho (cần đặt hàng / tồn kho cao).',
+      'Xuất file Excel có sẵn công thức và định dạng để phòng Kinh doanh tự kiểm tra; thời gian xử lý giảm xuống dưới 3 phút.'
+    ],
+    techStack: ['Python', 'pandas', 'openpyxl', 'Excel']
+  }
+];
+
 export const skills = [
-  { category: 'Ngôn ngữ lập trình', icon: 'Code', items: ['Python', 'Java', 'C#', 'JavaScript'] },
-  { category: 'Backend & Automation', icon: 'Terminal', items: ['FastAPI', 'Playwright', 'openpyxl'] },
-  { category: 'Data & ML', icon: 'Analytics', items: ['pandas', 'scikit-learn', 'Jupyter', 'RapidMiner'] },
-  { category: 'Frontend / Desktop', icon: 'DesktopWindows', items: ['React', 'Streamlit', 'Tauri'] },
-  { category: 'Hạ tầng dữ liệu', icon: 'Storage', items: ['Hive', 'Hadoop', 'MongoDB', 'Docker'] },
-  { category: 'Công cụ', icon: 'Build', items: ['Git', 'GitHub'] }
+  { category: 'Ngôn ngữ & truy vấn', icon: 'Code', items: ['Python', 'SQL', 'HiveQL'] },
+  { category: 'Xử lý & phân tích dữ liệu', icon: 'TableChart', items: ['pandas', 'NumPy', 'openpyxl', 'Excel'] },
+  { category: 'Machine Learning', icon: 'ModelTraining', items: ['scikit-learn', 'imbalanced-learn', 'SVM', 'Decision Tree', 'K-Means', 'PCA'] },
+  { category: 'Trực quan hóa', icon: 'BarChart', items: ['Matplotlib', 'Seaborn', 'Altair', 'Streamlit'] },
+  { category: 'Big Data & cơ sở dữ liệu', icon: 'Storage', items: ['Hadoop HDFS', 'Apache Hive', 'MongoDB', 'Docker Compose'] },
+  { category: 'Công cụ', icon: 'Build', items: ['Jupyter', 'Google Colab', 'Kaggle', 'Git/GitHub', 'RapidMiner'] }
 ];
 
 export const projects = [
   {
-    title: 'Hệ thống dự đoán mắc bệnh ung thư',
-    subtitle: 'Ứng dụng Big Data để lưu dữ liệu, thống kê và tìm kiếm',
-    period: '12/2024 - 4/2025',
-    members: 2,
-    repos: [
-      { label: 'BigData', url: 'https://github.com/Fly-onlyone/BigData' },
-      { label: 'Hive', url: 'https://github.com/Fly-onlyone/Hive' }
-    ],
-    description: [
-      'Xây dựng ứng dụng Streamlit hỗ trợ batch prediction từ Excel, xử lý 21 đặc trưng nguy cơ và triệu chứng để phân loại mức nguy cơ Low / Medium / High.',
-      'Tích hợp pipeline dự đoán với Apache Hive qua PyHive, tự động lưu kết quả và hỗ trợ tìm kiếm, lọc dữ liệu bệnh nhân theo nhiều chỉ số.',
-      'Triển khai môi trường Hadoop/Hive đa container bằng Docker Compose gồm NameNode, DataNode, Hive Metastore, HiveServer và PostgreSQL metastore.'
-    ],
-    techStack: ['Python', 'pandas', 'Streamlit', 'Apache Hive', 'PyHive', 'Hadoop HDFS', 'Docker Compose', 'Altair', 'RapidMiner']
-  },
-  {
     title: 'Khóa luận tốt nghiệp',
-    subtitle: 'Tiền xử lý dữ liệu cho bài toán phân loại và phân cụm',
-    period: '5/2025 - 8/2025',
+    subtitle: 'Ảnh hưởng của tiền xử lý dữ liệu đến bài toán phân loại và phân cụm',
+    period: '05/2025 - 08/2025',
     members: 2,
     repos: [
       { label: 'KhoaLuan', url: 'https://github.com/Fly-onlyone/KhoaLuan' }
     ],
+    highlight: 'F1-macro 0,733 → 0,776 trên Cora (đánh giá không rò rỉ dữ liệu)',
     description: [
-      'Nghiên cứu ảnh hưởng của tiền xử lý dữ liệu trên hai bài toán: phân loại dữ liệu Cora 7 lớp và phân cụm hành vi người dùng.',
-      'Thực nghiệm các bước feature selection, data scaling/standardization và model evaluation; áp dụng SVC và đánh giá bằng Accuracy, Macro Precision, Recall và F1-score.',
-      'So sánh kết quả giữa các phương pháp tiền xử lý, đồng thời trực quan hóa và đánh giá chất lượng cụm để phân tích tác động đến hiệu quả mô hình.'
+      'Phân loại 2.708 bài báo Cora (7 chủ đề): so sánh các pipeline chọn đặc trưng (VarianceThreshold, SelectKBest–chi²), chuẩn hóa (Normalizer, StandardScaler) và cân bằng lớp (RandomOverSampler) với SVM tuyến tính.',
+      'Đánh giá lại bằng quy trình không rò rỉ (chia train/test trước, tiền xử lý nằm trong imblearn Pipeline): F1-macro tăng từ 0,733 lên 0,776; phát hiện kết quả ban đầu (≈0,93) bị thổi phồng do oversampling trước khi chia dữ liệu.',
+      'Phân cụm 98.913 người dùng sàn thời trang C2C: Isolation Forest, QuantileTransformer, PCA (10 thành phần, giữ 95,3% phương sai), K-Means chọn k = 4 theo Silhouette (0,585), Davies–Bouldin và Calinski–Harabasz.'
     ],
-    techStack: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Jupyter Notebook', 'Matplotlib']
+    techStack: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'imbalanced-learn', 'Matplotlib', 'Seaborn', 'Jupyter']
+  },
+  {
+    title: 'Hệ thống dự đoán mức nguy cơ ung thư phổi trên Hadoop/Hive',
+    subtitle: 'Đồ án môn Big Data',
+    period: '12/2024 - 04/2025',
+    members: 2,
+    repos: [
+      { label: 'BigData', url: 'https://github.com/Fly-onlyone/BigData' }
+    ],
+    highlight: 'Accuracy 0,75 trên hồ sơ chưa thấy (grouped CV), thay vì 100% ảo',
+    description: [
+      'Ứng dụng Streamlit dự đoán mức nguy cơ Low / Medium / High từ file Excel 21 chỉ số, lưu kết quả vào bảng Hive (ORC, transactional) qua PyHive; hỗ trợ lọc, thống kê và biểu đồ.',
+      'Dựng Hadoop HDFS + Hive (metastore PostgreSQL) bằng Docker Compose gồm 5 container.',
+      'Phát hiện 1.000 dòng dữ liệu chỉ có 53 hồ sơ khác nhau; đánh giá lại bằng StratifiedGroupKFold: Decision Tree đạt accuracy 0,75, Logistic Regression 0,87.'
+    ],
+    techStack: ['Python', 'pandas', 'scikit-learn', 'Streamlit', 'Altair', 'Apache Hive', 'PyHive', 'Hadoop HDFS', 'Docker Compose', 'RapidMiner']
   }
 ];
 

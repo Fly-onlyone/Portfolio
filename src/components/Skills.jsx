@@ -3,9 +3,9 @@ import { Box, Card, Typography, Chip } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { motion } from 'framer-motion';
 import CodeIcon from '@mui/icons-material/Code';
-import TerminalIcon from '@mui/icons-material/Terminal';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import DesktopWindowsIcon from '@mui/icons-material/DesktopWindows';
+import TableChartIcon from '@mui/icons-material/TableChart';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import StorageIcon from '@mui/icons-material/Storage';
 import BuildIcon from '@mui/icons-material/Build';
 import SectionWrapper from './SectionWrapper';
@@ -14,9 +14,9 @@ import { glassStyle } from '../styles';
 
 const iconMap = {
   Code: <CodeIcon />,
-  Terminal: <TerminalIcon />,
-  Analytics: <AnalyticsIcon />,
-  DesktopWindows: <DesktopWindowsIcon />,
+  TableChart: <TableChartIcon />,
+  ModelTraining: <ModelTrainingIcon />,
+  BarChart: <BarChartIcon />,
   Storage: <StorageIcon />,
   Build: <BuildIcon />
 };
