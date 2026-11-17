@@ -59,7 +59,7 @@ export const projects = [
     highlight: 'F1-macro 0,733 → 0,776 trên Cora (đánh giá không rò rỉ dữ liệu)',
     description: [
       'Phân loại 2.708 bài báo Cora (7 chủ đề): so sánh các pipeline chọn đặc trưng (VarianceThreshold, SelectKBest–chi²), chuẩn hóa (Normalizer, StandardScaler) và cân bằng lớp (RandomOverSampler) với SVM tuyến tính.',
-      'Đánh giá lại bằng quy trình không rò rỉ (chia train/test trước, tiền xử lý nằm trong imblearn Pipeline): F1-macro tăng từ 0,733 lên 0,776; phát hiện kết quả ban đầu (≈0,93) bị thổi phồng do oversampling trước khi chia dữ liệu.',
+      'Đánh giá lại bằng quy trình không rò rỉ (chia train/test trước, tiền xử lý nằm trong imblearn Pipeline): F1-macro tăng từ 0,733 lên 0,776.',
       'Phân cụm 98.913 người dùng sàn thời trang C2C: Isolation Forest, QuantileTransformer, PCA (10 thành phần, giữ 95,3% phương sai), K-Means chọn k = 4 theo Silhouette (0,585), Davies–Bouldin và Calinski–Harabasz.'
     ],
     techStack: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'imbalanced-learn', 'Matplotlib', 'Seaborn', 'Jupyter']
