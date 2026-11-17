@@ -23,7 +23,7 @@ import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import CheckIcon from '@mui/icons-material/Check';
 import TranslateIcon from '@mui/icons-material/Translate';
 import { motion } from 'framer-motion';
-import { useThemeMode } from '../ThemeModeContext';
+import { useThemeMode } from '../themeMode';
 import { useLanguage } from '../i18n/languageContext';
 import { usePortfolioData } from '../i18n/usePortfolioData';
 

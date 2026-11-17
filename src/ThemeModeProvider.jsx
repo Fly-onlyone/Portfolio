@@ -1,13 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { THEME_STORAGE_KEY, ThemeModeContext } from './themeMode';
 
-const ThemeModeContext = createContext();
-
-const STORAGE_KEY = 'portfolio-theme-mode';
-
-export function ThemeModeProvider({ children }) {
+export default function ThemeModeProvider({ children }) {
   const [mode, setMode] = useState(() => {
     try {
-      return localStorage.getItem(STORAGE_KEY) || 'system';
+      return localStorage.getItem(THEME_STORAGE_KEY) || 'system';
     } catch {
       return 'system';
     }
@@ -30,7 +27,7 @@ export function ThemeModeProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, mode);
+      localStorage.setItem(THEME_STORAGE_KEY, mode);
     } catch {
       // ignore
     }
@@ -49,12 +46,4 @@ export function ThemeModeProvider({ children }) {
       {children}
     </ThemeModeContext.Provider>
   );
-}
-
-export function useThemeMode() {
-  const context = useContext(ThemeModeContext);
-  if (!context) {
-    throw new Error('useThemeMode must be used within a ThemeModeProvider');
-  }
-  return context;
 }
