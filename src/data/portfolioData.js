@@ -85,6 +85,7 @@ export const projects = [
 export const navLinks = [
   { label: 'Trang chủ', href: '#hero' },
   { label: 'Giới thiệu', href: '#about' },
+  { label: 'Kinh nghiệm', href: '#experience' },
   { label: 'Kỹ năng', href: '#skills' },
   { label: 'Dự án', href: '#projects' },
   { label: 'Liên hệ', href: '#contact' }
