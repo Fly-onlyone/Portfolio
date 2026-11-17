@@ -6,18 +6,45 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GroupIcon from '@mui/icons-material/Group';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CircleIcon from '@mui/icons-material/Circle';
+import InsightsIcon from '@mui/icons-material/Insights';
 import SectionWrapper from './SectionWrapper';
 import { projects } from '../data/portfolioData';
 import { glassStyle } from '../styles';
 
+// Accent bar is a pseudo-element (not border-image) so the card keeps its
+// 16px rounded corners; Card's overflow: hidden clips the bar to the radius.
 const projectCardStyle = (theme) => ({
   ...glassStyle(theme),
-  borderLeft: '3px solid',
-  borderImage: 'linear-gradient(to bottom, #2563eb, #06b6d4) 1 100%',
-  p: 4,
+  position: 'relative',
+  p: { xs: 2.5, md: 4 },
   height: '100%',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: '4px',
+    background: 'linear-gradient(to bottom, #2563eb, #06b6d4)',
+  },
+});
+
+const highlightStyle = (theme) => ({
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: 1,
+  px: 1.5,
+  py: 1,
+  mb: 2,
+  borderRadius: '10px',
+  background: theme.palette.mode === 'dark'
+    ? 'rgba(6, 182, 212, 0.12)'
+    : 'rgba(8, 145, 178, 0.08)',
+  border: theme.palette.mode === 'dark'
+    ? '1px solid rgba(6, 182, 212, 0.35)'
+    : '1px solid rgba(8, 145, 178, 0.3)',
 });
 
 const Projects = () => {
@@ -31,7 +58,6 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8, boxShadow: '0 8px 30px rgba(59,130,246,0.3)' }}
               style={{ height: '100%' }}
             >
               <Card sx={(theme) => projectCardStyle(theme)}>
@@ -47,14 +73,29 @@ const Projects = () => {
                 <Typography variant="subtitle1" color="secondary.main" mb={2}>
                   {project.subtitle}
                 </Typography>
-                
+
+                {project.highlight && (
+                  <Box sx={highlightStyle}>
+                    <InsightsIcon
+                      fontSize="small"
+                      sx={(theme) => ({
+                        mt: '2px',
+                        color: theme.palette.mode === 'dark' ? 'secondary.light' : 'secondary.dark',
+                      })}
+                    />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
+                      {project.highlight}
+                    </Typography>
+                  </Box>
+                )}
+
                 <List dense sx={{ mb: 2, flexGrow: 1 }}>
                   {project.description.map((desc, idx) => (
                     <ListItem key={idx} sx={{ px: 0, py: 0.5, alignItems: 'flex-start' }}>
                       <ListItemIcon sx={{ minWidth: 28, mt: 1 }}>
                         <CircleIcon sx={{ fontSize: 8, color: 'primary.main' }} />
                       </ListItemIcon>
-                      <ListItemText primary={desc} primaryTypographyProps={{ color: 'text.secondary' }} />
+                      <ListItemText primary={desc} slotProps={{ primary: { color: 'text.secondary' } }} />
                     </ListItem>
                   ))}
                 </List>
