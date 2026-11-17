@@ -36,6 +36,7 @@ export const ui = {
     email: 'Email',
     phone: l10n('Điện thoại', 'Phone'),
     github: 'GitHub',
+    linkedin: 'LinkedIn',
     location: l10n('Địa điểm', 'Location'),
     copy: l10n('Sao chép', 'Copy'),
     openLink: l10n('Mở liên kết', 'Open link'),

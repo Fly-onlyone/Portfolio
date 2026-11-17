@@ -9,6 +9,7 @@ export const personalInfo = {
   email: 'flytheonlyone111@gmail.com',
   phone: l10n('0822066908', '+84 822 066 908'),
   github: 'https://github.com/Fly-onlyone',
+  linkedin: 'https://www.linkedin.com/in/nguy%E1%BB%85n-gia-huy-304547418/',
   location: l10n('Thành Phố Hồ Chí Minh', 'Ho Chi Minh City, Vietnam'),
   dob: '01/07/2003',
   // `file` is relative to public/; prefix with import.meta.env.BASE_URL when linking.
