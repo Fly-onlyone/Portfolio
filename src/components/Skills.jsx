@@ -51,7 +51,7 @@ const Skills = () => {
                     </Box>
                     <Typography variant="h6">{skillGroup.category}</Typography>
                   </Box>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 'auto' }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                     {skillGroup.items.map((skill, idx) => (
                       <motion.div key={idx} whileHover={{ y: -2, boxShadow: '0 0 15px rgba(59,130,246,0.4)' }}>
                         <Chip 
