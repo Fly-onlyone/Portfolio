@@ -47,7 +47,7 @@ const Footer = () => {
         position: 'relative'
       }}
     >
-      <Box display="flex" gap={2}>
+      <Box sx={{ display: 'flex', gap: 2 }}>
         <IconButton 
           href={personalInfo?.github || 'https://github.com'} 
           target="_blank" 
@@ -57,7 +57,7 @@ const Footer = () => {
           <GitHubIcon />
         </IconButton>
       </Box>
-      <Typography variant="body2" color="text.secondary" align="center">
+      <Typography variant="body2" align="center" sx={{ color: 'text.secondary' }}>
         © 2026 Nguyễn Gia Huy. All rights reserved.
       </Typography>
 

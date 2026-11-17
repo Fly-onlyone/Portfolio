@@ -7,8 +7,9 @@ import {
   IconButton, 
   Drawer, 
   List, 
-  ListItem, 
-  ListItemText, 
+  ListItem,
+  ListItemButton,
+  ListItemText,
   Box,
   Tooltip,
   Menu,
@@ -242,20 +243,21 @@ const Navbar = () => {
         <Box sx={{ p: 2 }}>
           <List>
             {navLinks && navLinks.map((item) => (
-              <ListItem 
-                button 
-                key={item.id || item.href} 
-                onClick={() => handleScrollToSection(item.href)}
-                sx={{
-                  color: activeSection === item.href ? 'primary.main' : 'text.primary',
-                }}
-              >
-                <ListItemText 
-                  primary={item.label} 
-                  primaryTypographyProps={{
-                    fontWeight: activeSection === item.href ? 700 : 500,
+              <ListItem key={item.id || item.href} disablePadding>
+                <ListItemButton
+                  onClick={() => handleScrollToSection(item.href)}
+                  sx={{
+                    borderRadius: 1,
+                    color: activeSection === item.href ? 'primary.main' : 'text.primary',
                   }}
-                />
+                >
+                  <ListItemText
+                    primary={item.label}
+                    slotProps={{
+                      primary: { sx: { fontWeight: activeSection === item.href ? 700 : 500 } },
+                    }}
+                  />
+                </ListItemButton>
               </ListItem>
             ))}
           </List>
