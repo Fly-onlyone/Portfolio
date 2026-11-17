@@ -50,7 +50,7 @@ const Hero = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 3, md: 4 }} alignItems="center" direction={{ xs: 'column-reverse', md: 'row' }}>
+        <Grid container spacing={{ xs: 3, md: 4 }} direction={{ xs: 'column-reverse', md: 'row' }} sx={{ alignItems: 'center' }}>
           {/* LEFT Column */}
           <Grid size={{ xs: 12, md: 7 }}>
             <motion.div
@@ -87,18 +87,19 @@ const Hero = () => {
                     fontWeight: 600,
                     fontSize: { xs: '1.25rem', md: '1.75rem' },
                     lineHeight: 1.4,
-                    color: 'secondary.main',
+                    color: (theme) => (theme.palette.mode === 'dark' ? 'secondary.main' : '#0E7490'),
                   }}
                 >
-                  Fresher Data Analyst · Data Scientist
+                  {/* nowrap keeps each role on one line; phones break at the dot */}
+                  <Box component="span" sx={{ whiteSpace: 'nowrap' }}>Fresher Data Analyst ·</Box>{' '}
+                  <Box component="span" sx={{ whiteSpace: 'nowrap' }}>Data Scientist</Box>
                 </Typography>
               </motion.div>
 
               <motion.div variants={itemVariants}>
                 <Typography
                   variant="body1"
-                  color="text.secondary"
-                  sx={{ mb: 4, maxWidth: '560px', lineHeight: 1.8 }}
+                  sx={{ mb: 4, maxWidth: '560px', lineHeight: 1.8, color: 'text.secondary' }}
                 >
                   {objective}
                 </Typography>

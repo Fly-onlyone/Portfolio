@@ -38,7 +38,7 @@ const About = () => {
                   <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 * (index + 1) }}>
                     <ListItem>
                       <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.label} secondary={item.getValue()} secondaryTypographyProps={{ color: 'text.secondary' }} />
+                      <ListItemText primary={item.label} secondary={item.getValue()} slotProps={{ secondary: { sx: { color: 'text.secondary' } } }} />
                     </ListItem>
                   </motion.div>
                 ))}
@@ -65,14 +65,14 @@ const About = () => {
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: '12px', px: 2 }}>
                   <Card sx={(theme) => ({ ...glassStyle(theme), p: 2 })}>
-                    <Typography variant="h6" component="span" color="primary.light">
+                    <Typography variant="h6" component="span" sx={{ color: 'primary.light' }}>
                       {education?.school}
                     </Typography>
                     <Typography>{education?.degree}</Typography>
-                    <Typography variant="body2" color="text.secondary">{education?.period}</Typography>
-                    <Typography variant="body2" color="secondary.main">GPA: {education?.gpa}</Typography>
-                    <Typography variant="body2" color="text.secondary">Xếp loại: {education?.honors}</Typography>
-                    <Typography variant="body2" color="secondary.main">Chứng chỉ: {education?.cert}</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>{education?.period}</Typography>
+                    <Typography variant="body2" sx={{ color: 'secondary.main' }}>GPA: {education?.gpa}</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>Xếp loại: {education?.honors}</Typography>
+                    <Typography variant="body2" sx={{ color: 'secondary.main' }}>Chứng chỉ: {education?.cert}</Typography>
                   </Card>
                 </TimelineContent>
               </TimelineItem>

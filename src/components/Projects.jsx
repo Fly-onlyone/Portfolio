@@ -61,16 +61,16 @@ const Projects = () => {
               style={{ height: '100%' }}
             >
               <Card sx={(theme) => projectCardStyle(theme)}>
-                <Box display="flex" flexWrap="wrap" justifyContent="space-between" alignItems="center" mb={1}>
-                  <Typography variant="h5" color="primary.main" fontWeight="bold">
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', columnGap: 2, rowGap: 1, mb: 1 }}>
+                  <Typography variant="h5" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
                     {project.title}
                   </Typography>
-                  <Box display="flex" gap={1} flexWrap="wrap" mt={{ xs: 1, sm: 0 }}>
+                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                     <Chip icon={<CalendarMonthIcon fontSize="small" />} label={project.period} size="small" sx={(theme) => ({ color: 'text.primary', bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(30,64,175,0.06)' })} />
                     <Chip icon={<GroupIcon fontSize="small" />} label={`${project.members} thành viên`} size="small" sx={(theme) => ({ color: 'text.primary', bgcolor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(30,64,175,0.06)' })} />
                   </Box>
                 </Box>
-                <Typography variant="subtitle1" color="secondary.main" mb={2}>
+                <Typography variant="subtitle1" sx={{ color: 'secondary.main', mb: 2 }}>
                   {project.subtitle}
                 </Typography>
 
@@ -95,12 +95,12 @@ const Projects = () => {
                       <ListItemIcon sx={{ minWidth: 28, mt: 1 }}>
                         <CircleIcon sx={{ fontSize: 8, color: 'primary.main' }} />
                       </ListItemIcon>
-                      <ListItemText primary={desc} slotProps={{ primary: { color: 'text.secondary' } }} />
+                      <ListItemText primary={desc} slotProps={{ primary: { sx: { color: 'text.secondary' } } }} />
                     </ListItem>
                   ))}
                 </List>
 
-                <Box display="flex" flexWrap="wrap" gap={2} rowGap={1.5}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                   {project.techStack.map((tech, idx) => (
                     <Chip key={idx} label={tech} size="small" color="secondary" variant="outlined" sx={{ color: 'secondary.main', borderColor: 'secondary.main', px: 1 }} />
                   ))}
@@ -108,7 +108,7 @@ const Projects = () => {
 
                 <Divider sx={{ my: 3, borderColor: 'rgba(59,130,246,0.2)' }} />
 
-                <Box display="flex" gap={3} flexWrap="wrap">
+                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                   {project.repos?.map((repo, idx) => (
                     <Button 
                       key={idx}

@@ -27,7 +27,7 @@ const Experience = () => {
                   viewport={{ once: true }}
                 >
                   <Card sx={(theme) => ({ ...glassStyle(theme), p: { xs: 2, md: 3 } })}>
-                    <Typography variant="h6" component="h3" color="primary.light">
+                    <Typography variant="h6" component="h3" sx={{ color: 'primary.light' }}>
                       {job.company}
                     </Typography>
                     <Typography sx={{ fontWeight: 600, mt: 0.5 }}>{job.role}</Typography>
@@ -42,7 +42,7 @@ const Experience = () => {
                           <ListItemIcon sx={{ minWidth: 24, mt: 1 }}>
                             <CircleIcon sx={{ fontSize: 8, color: 'primary.main' }} />
                           </ListItemIcon>
-                          <ListItemText primary={desc} slotProps={{ primary: { color: 'text.secondary' } }} />
+                          <ListItemText primary={desc} slotProps={{ primary: { sx: { color: 'text.secondary' } } }} />
                         </ListItem>
                       ))}
                     </List>

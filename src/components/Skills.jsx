@@ -45,7 +45,7 @@ const Skills = () => {
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <motion.div variants={itemVariants} whileHover={{ y: -5 }} style={{ height: '100%' }}>
                 <Card sx={(theme) => ({ ...glassStyle(theme), p: 3, height: '100%', display: 'flex', flexDirection: 'column' })}>
-                  <Box display="flex" alignItems="center" mb={2}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <Box sx={{ color: 'primary.main', mr: 1, display: 'flex' }}>
                       {iconMap[skillGroup.icon] || <CodeIcon />}
                     </Box>
