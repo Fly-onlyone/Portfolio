@@ -89,7 +89,7 @@ const Hero = () => {
                     fontWeight: 600,
                     fontSize: { xs: '1.25rem', md: '1.75rem' },
                     lineHeight: 1.4,
-                    color: (theme) => (theme.palette.mode === 'dark' ? 'secondary.main' : '#0E7490'),
+                    color: 'secondary.main',
                   }}
                 >
                   {/* nowrap keeps each role on one line; phones break at the dot */}

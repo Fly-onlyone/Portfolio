@@ -29,7 +29,7 @@ const Experience = () => {
                   viewport={{ once: true }}
                 >
                   <Card sx={(theme) => ({ ...glassStyle(theme), p: { xs: 2, md: 3 } })}>
-                    <Typography variant="h6" component="h3" sx={{ color: 'primary.light' }}>
+                    <Typography variant="h6" component="h3" sx={(theme) => ({ color: theme.palette.mode === 'dark' ? 'primary.light' : 'primary.main' })}>
                       {job.company}
                     </Typography>
                     <Typography sx={{ fontWeight: 600, mt: 0.5 }}>{job.role}</Typography>

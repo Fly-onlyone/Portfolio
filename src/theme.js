@@ -76,11 +76,11 @@ export function getTheme(mode) {
         light: mode === 'dark' ? '#60A5FA' : '#3B82F6',
         dark: mode === 'dark' ? '#2563EB' : '#1E3A8A',
       },
-      secondary: {
-        main: '#06B6D4',
-        light: '#22D3EE',
-        dark: '#0891B2',
-      },
+      // Light mode uses darker cyans so secondary-colored text stays readable
+      // (>= 4.5:1) on the light blue background.
+      secondary: mode === 'dark'
+        ? { main: '#06B6D4', light: '#22D3EE', dark: '#0891B2' }
+        : { main: '#155E75', light: '#0E7490', dark: '#164E63' },
       background: mode === 'dark'
         ? { default: '#091D42', paper: '#0E2A58' }
         : { default: '#BFDBFE', paper: '#DBEAFE' },

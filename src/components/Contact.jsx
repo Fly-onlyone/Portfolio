@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, Typography, Link, IconButton, Tooltip } from '@mui/material';
+import { Box, Card, Typography, Link, IconButton, Tooltip, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { motion } from 'framer-motion';
 import EmailIcon from '@mui/icons-material/Email';
@@ -11,14 +11,16 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import SectionWrapper from './SectionWrapper';
 import { usePortfolioData } from '../i18n/usePortfolioData';
 
-const getContactItems = (personalInfo, t) => [
+// Accent per card; light mode uses darker shades so the small labels keep
+// at least 4.5:1 contrast on the light cards.
+const getContactItems = (personalInfo, t, isDark) => [
   {
     icon: <EmailIcon />,
     label: t.email,
     value: personalInfo?.email || '',
     link: `mailto:${personalInfo?.email}`,
     copyable: true,
-    color: '#3B82F6',
+    color: isDark ? '#60A5FA' : '#1D4ED8',
   },
   {
     icon: <PhoneIcon />,
@@ -27,7 +29,7 @@ const getContactItems = (personalInfo, t) => [
     // Strip spaces from the display format ("+84 822 066 908") for the tel: URI.
     link: `tel:${(personalInfo?.phone || '').replace(/[^\d+]/g, '')}`,
     copyable: true,
-    color: '#06B6D4',
+    color: isDark ? '#06B6D4' : '#155E75',
   },
   {
     icon: <GitHubIcon />,
@@ -35,13 +37,13 @@ const getContactItems = (personalInfo, t) => [
     value: 'Fly-onlyone',
     link: personalInfo?.github || '',
     external: true,
-    color: '#60A5FA',
+    color: isDark ? '#93C5FD' : '#1E40AF',
   },
   {
     icon: <LocationOnIcon />,
     label: t.location,
     value: personalInfo?.location || '',
-    color: '#22D3EE',
+    color: isDark ? '#22D3EE' : '#0E7490',
   },
 ];
 
@@ -61,7 +63,8 @@ const itemVariants = {
 const Contact = () => {
   const { personalInfo, ui } = usePortfolioData();
   const t = ui.contact;
-  const contactItems = getContactItems(personalInfo, t);
+  const isDark = useTheme().palette.mode === 'dark';
+  const contactItems = getContactItems(personalInfo, t, isDark);
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);

@@ -68,7 +68,7 @@ const About = () => {
                 </TimelineSeparator>
                 <TimelineContent sx={{ py: '12px', px: 2 }}>
                   <Card sx={(theme) => ({ ...glassStyle(theme), p: 2 })}>
-                    <Typography variant="h6" component="span" sx={{ color: 'primary.light' }}>
+                    <Typography variant="h6" component="span" sx={(theme) => ({ color: theme.palette.mode === 'dark' ? 'primary.light' : 'primary.main' })}>
                       {education?.school}
                     </Typography>
                     <Typography>{education?.degree}</Typography>

@@ -82,7 +82,7 @@ const Projects = () => {
                       fontSize="small"
                       sx={(theme) => ({
                         mt: '2px',
-                        color: theme.palette.mode === 'dark' ? 'secondary.light' : 'secondary.dark',
+                        color: theme.palette.mode === 'dark' ? 'secondary.light' : 'secondary.main',
                       })}
                     />
                     <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
